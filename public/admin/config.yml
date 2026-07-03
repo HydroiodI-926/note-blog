@@ -1,0 +1,97 @@
+﻿# Decap CMS 配置 —— 面向 GitHub Pages 用户页（yourname.github.io）。
+# 文档：https://decapcms.org/docs/configuration-options/
+
+# ============================================================
+# 后端：GitHub + PKCE（公开仓库零后端认证，浏览器内用 PKCE 拿 token）
+# ============================================================
+# 部署前需做的两件事：
+#   1) 在 GitHub 创建一个 OAuth App（https://github.com/settings/developers），
+#      Authorization callback URL 填：https://api.decap.green/oauth/callback
+#     （Decap 官方提供的公共 PKCE 代理；想自托管可改为自己的 proxy_url）
+#   2) 把该 OAuth App 的 Client ID 填到下方 app_id（替换 Iv1.xxxxxxxx 占位符）。
+backend:
+  name: github
+  repo: yourname/yourname.github.io # ◎ 改成你的实际仓库 owner/repo
+  branch: main # 内容分支
+  auth_type: pkce # PKCE：无需自建 OAuth Server / Identity 服务
+  app_id: Iv1.xxxxxxxxxxxxxxxx # ◎ 替换为你的 GitHub OAuth App Client ID
+  # 若用自托管代理（私有仓库或脱离 decap.green 公共代理），取消下面注释并填自己的代理：
+  # proxy_url: https://your-oauth-proxy.workers.dev
+
+# 本地联调：先运行 npx decap-server，再访问 http://localhost:3000/admin
+local_backend: true
+
+# ============================================================
+# 站点信息（用户页：yourname.github.io，无 basePath）
+# ============================================================
+site_url: https://yourname.github.io # ◎ 改成你的实际用户页地址
+display_url: https://yourname.github.io
+logo_url: https://yourname.github.io/logo.svg
+
+# 编辑工作流：草稿 → 审阅 → 发布，分枝化（可选，注释掉则改为直接提交 main）
+publish_mode: editorial_workflow
+
+# ============================================================
+# 媒体资源
+# ============================================================
+media_folder: 'public/images' # 上传时写入仓库的物理路径
+public_folder: '/images' # 前端引用的 URL 前缀（用户页时无 basePath）
+# ============================================================
+# 内容集合：直连 tailwind-nextjs-starter-blog 的 data/blog 目录
+# ============================================================
+collections:
+  - name: 'blog'
+    label: '博文'
+    label_singular: '博文'
+    folder: 'data/blog' # ◎ 模板的内容目录（非 src/content/blog）
+    create: true
+    delete: true
+    extension: 'md'
+    format: 'frontmatter'
+    slug: '{{slug}}'
+    summary: '{{title}} — {{year}}/{{month}}/{{day}}'
+    sortable_fields: ['date', 'title', 'tags']
+
+    fields:
+      # —— Frontmatter（对齐模板 Blog 文档类型）——
+      - { label: '标题', name: 'title', widget: 'string' }
+      - {
+          label: '发布日期',
+          name: 'date',
+          widget: 'datetime',
+          date_format: 'YYYY-MM-DD',
+          time_format: false,
+          format: 'YYYY-MM-DD',
+        }
+      - { label: '摘要', name: 'summary', widget: 'text', required: false }
+      - { label: '标签', name: 'tags', widget: 'list', default: ['nextjs'] }
+      - { label: '草稿', name: 'draft', widget: 'boolean', default: false }
+      - { label: '作者', name: 'author', widget: 'string', required: false }
+      - {
+          label: '封面图',
+          name: 'images',
+          widget: 'list',
+          required: false,
+          field: { label: '图片', name: 'src', widget: 'image' },
+        }
+      - { label: '布局', name: 'layout', widget: 'hidden', default: 'PostSimple' }
+
+      # —— 正文：markdown widget 是代码块与图表输入的关键 ——
+      - label: '正文'
+        name: 'body'
+        widget: 'markdown'
+        # ◎ 必须同时开放 raw 与 rich_text：富文本模式无法可靠输入
+        #   `cpp / `mermaid 这类围栏代码块，复杂图表需切到 raw 整段粘贴。
+        modes: ['raw', 'rich_text']
+        toolbar_buttons:
+          main:
+            - bold
+            - italic
+            - code # 行内代码
+            - link
+            - quote
+            - bulleted-list
+            - numbered-list
+            - strikethrough
+            # 代码块按钮：让作者在富文本模式下也能选择语言
+        # 提示：Mermaid 图表请在 raw 模式下用 `mermaid 围栏块整段输入。

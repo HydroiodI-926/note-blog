@@ -5,10 +5,12 @@
   "scripts": {
     "start": "next dev",
     "dev": "cross-env INIT_CWD=$PWD next dev",
-    "build": "cross-env INIT_CWD=$PWD next build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
+    "build": "cross-env INIT_CWD=$PWD EXPORT=1 next build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
+    "build:dynamic": "cross-env INIT_CWD=$PWD next build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts",
+    "postinstall": "playwright-core install chromium",
     "prepare": "husky"
   },
   "dependencies": {
@@ -36,13 +38,15 @@
     "rehype-citation": "^2.3.2",
     "rehype-katex": "^7.0.1",
     "rehype-katex-notranslate": "^1.1.4",
+    "rehype-mermaid": "^3.0.0",
     "rehype-preset-minify": "7.0.1",
-    "rehype-prism-plus": "^2.0.2",
+    "rehype-pretty-code": "^0.14.1",
     "rehype-slug": "^6.0.0",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
     "remark-github-blockquote-alert": "^2.0.1",
     "remark-math": "^6.0.0",
+    "shiki": "^1.29.2",
     "tailwindcss": "^4.1.18",
     "unist-util-visit": "^5.1.0"
   },
@@ -62,6 +66,8 @@
     "globals": "^17.3.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
+    "playwright": "^1.49.0",
+    "playwright-core": "^1.49.0",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "typescript": "^5.9.3"
@@ -73,6 +79,5 @@
     "*.+(js|jsx|ts|tsx|json|css|md|mdx)": [
       "yarn prettier --write"
     ]
-  },
-  "packageManager": "yarn@3.6.1"
+  }
 }

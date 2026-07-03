@@ -1,142 +1,76 @@
-@reference "./tailwind.css";
+﻿@reference "./tailwind.css";
 
-/**
- * CSS Styles for code highlighting.
- * Feel free to customize token styles 
- * by copying from a prismjs compatible theme:
- * https://github.com/PrismJS/prism-themes
+/*
+ * 代码块样式（已从 Prism 迁移到 Shiki / rehype-pretty-code）。
+ *
+ * Shiki 把 token 颜色内联到每个 <span style="color:...">，因此不再需要
+ * Prism 的 .token.* CSS 类（已全部删除）。本文件只保留与高亮引擎无关的结构性样式，
+ * 并新增 rehype-pretty-code 双主题的明暗切换逻辑。
  */
 
-/* Code title styles */
+/* ============ 代码块标题（pliny 的 remarkCodeTitles 生成） ============ */
 .remark-code-title {
-  @apply rounded-xs bg-gray-700 px-5 py-3 font-mono text-sm font-bold text-gray-200 dark:bg-gray-800;
+  @apply rounded-t-lg bg-gray-500 px-5 py-3 font-mono text-sm font-bold text-gray-100;
 }
 
 .remark-code-title + div > pre {
   @apply mt-0 rounded-t-none;
 }
 
-/* Code block styles */
-.code-highlight {
-  @apply float-left min-w-full;
-}
-
+/* ============ 行级结构（rehype-pretty-code 输出） ============ */
 .code-line {
-  @apply -mx-4 block border-l-4 border-transparent pr-4 pl-4;
+  display: block;
 }
 
+/* pliny 的行高亮 / 行删除 / 行插入语义（与 rehype-pretty-code 共存） */
 .code-line.inserted {
-  @apply bg-green-500/20;
+  background-color: rgba(16, 185, 129, 0.2);
 }
-
 .code-line.deleted {
-  @apply bg-red-500/20;
+  background-color: rgba(244, 63, 94, 0.2);
 }
 
-.highlight-line {
-  @apply border-primary-500 -mx-4 border-l-4 bg-gray-700/50;
+/* rehype-pretty-code 显式高亮行：`js {2,4-6} */
+.highlighted {
+  background-color: rgba(200, 200, 255, 0.1);
+  box-shadow: inset 2px 0 0 rgb(139, 92, 246);
+  display: block;
+}
+
+/* rehype-pretty-code 显式高亮单词：// [!highlight word] */
+.highlighted-chars {
+  background-color: rgba(50, 200, 100, 0.2);
+  padding: 0.1rem 0.2rem;
+  border-radius: 0.25rem;
 }
 
 .line-number::before {
-  @apply mr-4 -ml-2 inline-block w-4 text-right text-gray-400;
-  content: attr(line);
+  content: attr(data-line);
+  @apply mr-4 inline-block w-4 text-right text-gray-400;
 }
 
-/* Token styles */
-/**
- * MIT License
- * Copyright (c) 2018 Sarah Drasner
- * Sarah Drasner's[@sdras] Night Owl
- * Ported by Sara vieria [@SaraVieira]
- * Added by Souvik Mandal [@SimpleIndian]
+/* ============ Shiki 双主题明暗切换 ============ */
+/*
+ * rehype-pretty-code 配置 theme: { light, dark } 时，每个 token span 同时写入
+ *   style="--shiki-light:#...;--shiki-dark:#..."
+ * 默认用亮色，根节点带 .dark class（next-themes 切换）时改用暗色。
  */
-.token.comment,
-.token.prolog,
-.token.cdata {
-  color: rgb(99, 119, 119);
-  font-style: italic;
+html :where(pre, code)[data-theme] {
+  /* 容器自身背景也走变量；rehype-pretty-code 设 keepBackground:false 时不再内联背景 */
+}
+.shiki,
+.shiki span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+html.dark .shiki,
+html.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
 }
 
-.token.punctuation {
-  color: rgb(199, 146, 234);
-}
-
-.namespace {
-  color: rgb(178, 204, 214);
-}
-
-.token.deleted {
-  color: rgba(239, 83, 80, 0.56);
-  font-style: italic;
-}
-
-.token.symbol,
-.token.property {
-  color: rgb(128, 203, 196);
-}
-
-.token.tag,
-.token.operator,
-.token.keyword {
-  color: rgb(127, 219, 202);
-}
-
-.token.boolean {
-  color: rgb(255, 88, 116);
-}
-
-.token.number {
-  color: rgb(247, 140, 108);
-}
-
-.token.constant,
-.token.function,
-.token.builtin,
-.token.char {
-  color: rgb(130, 170, 255);
-}
-
-.token.selector,
-.token.doctype {
-  color: rgb(199, 146, 234);
-  font-style: italic;
-}
-
-.token.attr-name,
-.token.inserted {
-  color: rgb(173, 219, 103);
-  font-style: italic;
-}
-
-.token.string,
-.token.url,
-.token.entity,
-.language-css .token.string,
-.style .token.string {
-  color: rgb(173, 219, 103);
-}
-
-.token.class-name,
-.token.atrule,
-.token.attr-value {
-  color: rgb(255, 203, 139);
-}
-
-.token.regex,
-.token.important,
-.token.variable {
-  color: rgb(214, 222, 235);
-}
-
-.token.important,
-.token.bold {
-  font-weight: bold;
-}
-
-.token.italic {
-  font-style: italic;
-}
-
-.token.table {
-  display: inline;
+/* 代码块圆角与内边距（pliny 的 Pre 组件是包装层，真正 <pre> 在内层） */
+.remark-code-title + div > pre,
+pre.shiki {
+  @apply rounded-b-lg;
 }

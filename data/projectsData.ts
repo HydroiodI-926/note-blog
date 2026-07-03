@@ -1,4 +1,4 @@
-interface Project {
+﻿interface Project {
   title: string
   description: string
   href?: string
@@ -7,20 +7,9 @@ interface Project {
 
 const projectsData: Project[] = [
   {
-    title: 'A Search Engine',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
-    imgSrc: '/static/images/google.png',
-    href: 'https://www.google.com',
-  },
-  {
-    title: 'The Time Machine',
-    description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-    to the desired date and press "Go". No more worrying about lost keys or
-    forgotten headphones with this simple yet affordable solution.`,
-    imgSrc: '/static/images/time-machine.jpg',
-    href: '/blog/the-time-machine',
+    title: '博客建设记录',
+    description: '记录博客从搭建到上线的全过程，包括技术选型、功能开发和部署配置。',
+    href: '/blog',
   },
 ]
 

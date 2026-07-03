@@ -1,0 +1,70 @@
+1:npm warn ERESOLVE overriding peer dependency
+2:npm warn ERESOLVE overriding peer dependency
+3:npm warn ERESOLVE overriding peer dependency
+4:npm warn ERESOLVE overriding peer dependency
+5:npm warn ERESOLVE overriding peer dependency
+6:npm warn EBADENGINE Unsupported engine {
+7:npm warn EBADENGINE   package: 'cross-env@10.1.0',
+8:npm warn EBADENGINE   required: { node: '>=20' },
+9:npm warn EBADENGINE   current: { node: 'v18.20.6', npm: '10.8.2' }
+10:npm warn EBADENGINE }
+11:npm warn EBADENGINE Unsupported engine {
+12:npm warn EBADENGINE   package: 'lint-staged@16.4.0',
+13:npm warn EBADENGINE   required: { node: '>=20.17' },
+14:npm warn EBADENGINE   current: { node: 'v18.20.6', npm: '10.8.2' }
+15:npm warn EBADENGINE }
+16:npm warn EBADENGINE Unsupported engine {
+17:npm warn EBADENGINE   package: 'prettier-plugin-tailwindcss@0.7.4',
+18:npm warn EBADENGINE   required: { node: '>=20.19' },
+19:npm warn EBADENGINE   current: { node: 'v18.20.6', npm: '10.8.2' }
+20:npm warn EBADENGINE }
+21:npm warn EBADENGINE Unsupported engine {
+22:npm warn EBADENGINE   package: '@tailwindcss/oxide@4.3.1',
+23:npm warn EBADENGINE   required: { node: '>= 20' },
+24:npm warn EBADENGINE   current: { node: 'v18.20.6', npm: '10.8.2' }
+25:npm warn EBADENGINE }
+26:npm warn EBADENGINE Unsupported engine {
+27:npm warn EBADENGINE   package: 'eslint-visitor-keys@5.0.1',
+28:npm warn EBADENGINE   required: { node: '^20.19.0 || ^22.13.0 || >=24' },
+29:npm warn EBADENGINE   current: { node: 'v18.20.6', npm: '10.8.2' }
+30:npm warn EBADENGINE }
+31:npm warn EBADENGINE Unsupported engine {
+32:npm warn EBADENGINE   package: 'commander@14.0.3',
+33:npm warn EBADENGINE   required: { node: '>=20' },
+34:npm warn EBADENGINE   current: { node: 'v18.20.6', npm: '10.8.2' }
+35:npm warn EBADENGINE }
+36:npm warn EBADENGINE Unsupported engine {
+37:npm warn EBADENGINE   package: 'listr2@9.0.5',
+38:npm warn EBADENGINE   required: { node: '>=20.0.0' },
+39:npm warn EBADENGINE   current: { node: 'v18.20.6', npm: '10.8.2' }
+40:npm warn EBADENGINE }
+41:npm warn EBADENGINE Unsupported engine {
+42:npm warn EBADENGINE   package: 'cli-truncate@5.2.0',
+43:npm warn EBADENGINE   required: { node: '>=20' },
+44:npm warn EBADENGINE   current: { node: 'v18.20.6', npm: '10.8.2' }
+45:npm warn EBADENGINE }
+46:npm warn EBADENGINE Unsupported engine {
+47:npm warn EBADENGINE   package: 'slice-ansi@8.0.0',
+48:npm warn EBADENGINE   required: { node: '>=20' },
+49:npm warn EBADENGINE   current: { node: 'v18.20.6', npm: '10.8.2' }
+50:npm warn EBADENGINE }
+51:npm warn EBADENGINE Unsupported engine {
+52:npm warn EBADENGINE   package: 'string-width@8.2.1',
+53:npm warn EBADENGINE   required: { node: '>=20' },
+54:npm warn EBADENGINE   current: { node: 'v18.20.6', npm: '10.8.2' }
+55:npm warn EBADENGINE }
+56:npm warn EBADENGINE Unsupported engine {
+57:npm warn EBADENGINE   package: 'marked@16.4.2',
+58:npm warn EBADENGINE   required: { node: '>= 20' },
+59:npm warn EBADENGINE   current: { node: 'v18.20.6', npm: '10.8.2' }
+60:npm warn EBADENGINE }
+61:npm warn EBADENGINE Unsupported engine {
+62:npm warn EBADENGINE   package: 'entities@8.0.0',
+63:npm warn EBADENGINE   required: { node: '>=20.19.0' },
+64:npm warn EBADENGINE   current: { node: 'v18.20.6', npm: '10.8.2' }
+65:npm warn EBADENGINE }
+66:npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+67:npm warn deprecated formidable@1.2.6: Please upgrade to latest, formidable@v2 or formidable@v3! Check these notes: https://bit.ly/2ZEqIau
+68:npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+69:npm warn deprecated superagent@3.8.1: Please upgrade to superagent v10.2.2+, see release notes at https://github.com/forwardemail/superagent/releases/tag/v10.2.2 - maintenance is supported by Forward Email @ https://forwardemail.net
+71:added 754 packages in 2m

@@ -1,10 +1,10 @@
-import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer2/source-files'
+﻿import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer2/source-files'
 import { writeFileSync } from 'fs'
 import readingTime from 'reading-time'
 import { slug } from 'github-slugger'
 import path from 'path'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
-// Remark packages
+// Remark plugins
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import { remarkAlert } from 'remark-github-blockquote-alert'
@@ -14,33 +14,32 @@ import {
   remarkImgToJsx,
   extractTocHeadings,
 } from 'pliny/mdx-plugins/index.js'
-// Rehype packages
+// Rehype plugins
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeKatex from 'rehype-katex'
 import rehypeKatexNoTranslate from 'rehype-katex-notranslate'
 import rehypeCitation from 'rehype-citation'
-import rehypePrismPlus from 'rehype-prism-plus'
+import rehypeMermaid from 'rehype-mermaid'
+import rehypePrettyCode from 'rehype-pretty-code'
 import rehypePresetMinify from 'rehype-preset-minify'
+import { rehypePrettyCodeOptions } from './lib/rehype-pretty-code-options'
 import siteMetadata from './data/siteMetadata'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
-import prettier from 'prettier'
 
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
 
-// heroicon mini link
-const icon = fromHtmlIsomorphic(
-  `
-  <span class="content-header-link">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 linkicon">
-  <path d="M12.232 4.232a2.5 2.5 0 0 1 3.536 3.536l-1.225 1.224a.75.75 0 0 0 1.061 1.06l1.224-1.224a4 4 0 0 0-5.656-5.656l-3 3a4 4 0 0 0 .225 5.865.75.75 0 0 0 .977-1.138 2.5 2.5 0 0 1-.142-3.667l3-3Z" />
-  <path d="M11.603 7.963a.75.75 0 0 0-.977 1.138 2.5 2.5 0 0 1 .142 3.667l-3 3a2.5 2.5 0 0 1-3.536-3.536l1.225-1.224a.75.75 0 0 0-1.061-1.06l-1.224 1.224a4 4 0 1 0 5.656 5.656l3-3a4 4 0 0 0-.225-5.865Z" />
-  </svg>
-  </span>
-`,
-  { fragment: true }
-)
+// heroicon mini link icon
+const iconHtml = [
+  '<span class="content-header-link">',
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 linkicon">',
+  '<path d="M12.232 4.232a2.5 2.5 0 0 1 3.536 3.536l-1.225 1.224a.75.75 0 0 0 1.061 1.06l1.224-1.224a4 4 0 0 0-5.656-5.656l-3 3a4 4 0 0 0 .225 5.865.75.75 0 0 0 .977-1.138 2.5 2.5 0 0 1-.142-3.667l3-3Z" />',
+  '<path d="M11.603 7.963a.75.75 0 0 0-.977 1.138 2.5 2.5 0 0 1 .142 3.667l-3 3a2.5 2.5 0 0 1-3.536-3.536l1.225-1.224a.75.75 0 0 0-1.061-1.06l-1.224 1.224a4 4 0 1 0 5.656 5.656l3-3a4 4 0 0 0-.225-5.865Z" />',
+  '</svg>',
+  '</span>',
+].join('\n')
+const icon = fromHtmlIsomorphic(iconHtml, { fragment: true })
 
 const computedFields: ComputedFields = {
   readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
@@ -60,7 +59,7 @@ const computedFields: ComputedFields = {
 }
 
 /**
- * Count the occurrences of all tags across blog posts and write to json file
+ * Count tags across blog posts and write to json file
  */
 async function createTagCount(allBlogs) {
   const tagCount: Record<string, number> = {}
@@ -76,8 +75,7 @@ async function createTagCount(allBlogs) {
       })
     }
   })
-  const formatted = await prettier.format(JSON.stringify(tagCount, null, 2), { parser: 'json' })
-  writeFileSync('./app/tag-data.json', formatted)
+  writeFileSync('./app/tag-data.json', JSON.stringify(tagCount, null, 2) + '\n')
 }
 
 function createSearchIndex(allBlogs) {
@@ -175,7 +173,25 @@ export default makeSource({
       rehypeKatex,
       rehypeKatexNoTranslate,
       [rehypeCitation, { path: path.join(root, 'data') }],
-      [rehypePrismPlus, { defaultLanguage: 'js', ignoreMissing: true }],
+      // Rendering pipeline core order (equivalent to Astro excludeLangs: ['mermaid']):
+      // 1) rehype-mermaid runs first: bakes ```mermaid code blocks into inline <svg> at build time
+      //    strategy: 'inline-svg' means zero client-side mermaid.js runtime
+      //    Requires Chromium at build time (provided by playwright-core)
+      [
+        rehypeMermaid,
+        {
+          strategy: 'inline-svg',
+          dark: 'dark',
+          mermaidConfig: {
+            theme: 'default',
+            themeVariables: { fontFamily: 'inherit' },
+            flowchart: { curve: 'basis', htmlLabels: true },
+          },
+        },
+      ],
+      // 2) rehype-pretty-code runs after: Shiki only sees code blocks remaining after mermaid
+      //    No language-mermaid nodes exist, so charts are never mis-highlighted
+      [rehypePrettyCode, rehypePrettyCodeOptions],
       rehypePresetMinify,
     ],
   },
