@@ -49,6 +49,7 @@ jobs:
           # UNOPTIMIZED=1：output:'export' 不支持 Next 图片优化，必须关掉
           UNOPTIMIZED: 1
           # 用户页（yourname.github.io）无需 basePath，故不再注入 BASE_PATH
+          BASE_PATH: /note-blog
 
       - uses: actions/upload-pages-artifact@v3
         with:

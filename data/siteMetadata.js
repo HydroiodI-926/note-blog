@@ -6,7 +6,7 @@ const siteMetadata = {
   description: '一个基于 Next.js 和 Tailwind CSS 的个人博客',
   language: 'zh-cn',
   theme: 'system',
-  siteUrl: 'https://your-domain.com',
+  siteUrl: 'https://hydroiodi-926.github.io/note-blog',
   siteRepo: '',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
