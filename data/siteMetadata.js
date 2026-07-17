@@ -1,4 +1,4 @@
-﻿/** @type {import("pliny/config").PlinyConfig } */
+/** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: 'Hydroiody的博客',
   author: 'HydroiodI_926',
@@ -22,7 +22,7 @@ const siteMetadata = {
   },
   comments: {
     provider: 'giscus',
-    giscusConfig: {
+    giscConfig: {
       repo: process.env.NEXT_PUBLIC_GISCUS_REPO,
       repositoryId: process.env.NEXT_PUBLIC_GISCUS_REPOSITORY_ID,
       category: process.env.NEXT_PUBLIC_GISCUS_CATEGORY,
@@ -36,6 +36,10 @@ const siteMetadata = {
       lang: 'zh-CN',
     },
   },
+  // 背景图片配置
+  bgImages: [`/static/images/ocean.jpeg`],
+  bgBlur: 20,
+
   search: {
     provider: 'kbar',
     kbarConfig: {
