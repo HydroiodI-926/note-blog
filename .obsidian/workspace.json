@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "ae84444c2944e83d",
+        "id": "ecd0e4614e1f336a",
         "type": "tabs",
         "children": [
           {
-            "id": "f93437b27954cef3",
+            "id": "d52b4cd39fbb195b",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -176,24 +176,32 @@
       "bases:新建数据库": false
     }
   },
-  "active": "f93437b27954cef3",
+  "active": "d52b4cd39fbb195b",
   "lastOpenFiles": [
-    "public/tags/writings/feed.xml",
-    "public/tags/tailwind/feed.xml",
-    "public/tags/ols/feed.xml",
-    "public/tags/reflection/feed.xml",
-    "public/tags/next-js/feed.xml",
-    "public/tags/math/feed.xml",
-    "public/tags/multi-author/feed.xml",
-    "public/tags/markdown/feed.xml",
-    "public/tags/holiday/feed.xml",
-    "public/tags/images/feed.xml",
-    "public/tags/features/feed.xml",
+    "fix-eslint.js",
+    "data/signature.md",
+    "data/blog/others/markd文件测试.md",
+    "add-plugin.js",
+    "lib/remark-line-breaks.mjs",
+    "install-remark.js",
+    "fix-git2.js",
+    "fix-git.js",
+    "fix-layout2.js",
+    "fix-layout.js",
+    "public/static/images/0c805f70-5078-4fb1-b5a5-1deb66332778.png",
+    "public/static/images/markd文件测试.png",
+    "data/blog/test-plugin.md",
+    "lib/remark-convert-obsidian-images.mjs",
+    "scripts/convert-image-paths.mjs",
+    "public/static/images/6d935eb0-070f-4998-b8da-2af093d30c58.png",
+    "_fix.py",
+    "public/static/images/c2a5ab5d-7cc4-451d-bdcf-48114320e434.png",
+    "public/static/images/95aaabd5-466a-41a2-aad7-a58d849db472.png",
+    "data/logo.svg",
     "data/blog/others/得知博客页面打好的竹天云鬼belike.md",
     "public/static/images/f479a4c3-7ab6-4a75-a5c3-2e503834c628.png",
     "public/static/images/19cee086-18f5-408e-b21d-c703ed607d9f.png",
     "data/blog/未命名.md",
-    "data/logo.svg",
     "docs/blog-debug-guide.md"
   ]
 }

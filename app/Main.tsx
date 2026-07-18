@@ -6,7 +6,11 @@ import NewsletterForm from 'pliny/ui/NewsletterForm'
 
 const MAX_DISPLAY = 5
 
-export default function Home({ posts }) {
+export default function Home({
+  posts,
+}: {
+  posts: Array<{ slug: string; date: string; title: string; summary: string; tags: string[] }>
+}) {
   return (
     <>
       <div className="glass-card p-6 md:p-8">
