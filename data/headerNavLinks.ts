@@ -1,4 +1,4 @@
-﻿const headerNavLinks = [
+const headerNavLinks = [
   { href: '/', title: '首页' },
   { href: '/blog', title: '博客' },
   { href: '/tags', title: '标签' },

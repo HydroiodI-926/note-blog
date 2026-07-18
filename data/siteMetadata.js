@@ -14,9 +14,7 @@ const siteMetadata = {
   github: '',
   locale: 'zh-CN',
   stickyNav: false,
-  analytics: {
-    // 如需使用分析服务，请同时在 next.config.js 的 CSP 中添加对应域名
-  },
+  analytics: {},
   newsletter: {
     provider: '',
   },
@@ -37,8 +35,19 @@ const siteMetadata = {
     },
   },
   // 背景图片配置
-  bgImages: [`/static/images/ocean.jpeg`],
+  bgImages: [`${process.env.BASE_PATH || ''}/static/images/ocean.jpeg`],
   bgBlur: 20,
+
+  // 首页个人资料卡配置
+  avatarUrl: `${process.env.BASE_PATH || ''}/static/images/avatar.png`,
+  signature: '代码是诗，逻辑是歌，用心写出每一行。',
+  social: {
+    github: 'https://github.com/HydroiodI-926',
+    email: '',
+  },
+
+  // 精选图片配置
+  featuredImages: [{ src: `${process.env.BASE_PATH || ''}/static/images/ocean.jpeg`, alt: '海洋' }],
 
   search: {
     provider: 'kbar',

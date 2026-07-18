@@ -1,4 +1,4 @@
-import siteMetadata from '@/data/siteMetadata'
+﻿import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Logo from '@/data/logo.svg'
 import Link from './Link'
@@ -32,7 +32,6 @@ const Header = () => {
       <div className="flex items-center space-x-4 leading-5 sm:-mr-2 sm:space-x-6">
         <div className="no-scrollbar hidden max-w-40 items-center gap-x-4 overflow-x-auto sm:flex md:max-w-72 lg:max-w-96">
           {headerNavLinks
-            .filter((link) => link.href !== '/')
             .map((link) => (
               <Link
                 key={link.title}

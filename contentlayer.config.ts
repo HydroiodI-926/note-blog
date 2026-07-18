@@ -5,6 +5,8 @@ import { slug } from 'github-slugger'
 import path from 'path'
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
 // Remark plugins
+import remarkConvertObsidianImages from './lib/remark-convert-obsidian-images.mjs'
+import remarkLineBreaks from './lib/remark-line-breaks.mjs'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import { remarkAlert } from 'remark-github-blockquote-alert'
@@ -93,7 +95,7 @@ function createSearchIndex(allBlogs) {
 
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
-  filePathPattern: 'blog/**/*.mdx',
+  filePathPattern: 'blog/**/*.{md,mdx}',
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
@@ -128,7 +130,7 @@ export const Blog = defineDocumentType(() => ({
 
 export const Authors = defineDocumentType(() => ({
   name: 'Authors',
-  filePathPattern: 'authors/**/*.mdx',
+  filePathPattern: 'authors/**/*.{md,mdx}',
   contentType: 'mdx',
   fields: {
     name: { type: 'string', required: true },
@@ -157,6 +159,8 @@ export default makeSource({
       remarkMath,
       remarkImgToJsx,
       remarkAlert,
+      remarkConvertObsidianImages,
+      remarkLineBreaks,
     ],
     rehypePlugins: [
       rehypeSlug,
@@ -201,3 +205,4 @@ export default makeSource({
     createSearchIndex(allBlogs)
   },
 })
+
