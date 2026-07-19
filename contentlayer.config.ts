@@ -142,6 +142,7 @@ export const Authors = defineDocumentType(() => ({
     bluesky: { type: 'string' },
     linkedin: { type: 'string' },
     github: { type: 'string' },
+    summary: { type: 'string' },
     layout: { type: 'string' },
   },
   computedFields,
@@ -205,4 +206,3 @@ export default makeSource({
     createSearchIndex(allBlogs)
   },
 })
-

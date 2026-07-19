@@ -33,9 +33,7 @@ export default function SignatureQuote() {
       </p>
       <div className="mt-4 flex items-center justify-center gap-2">
         <span className="bg-primary-300 dark:bg-primary-600 h-px w-12" />
-        <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-          {authorName}
-        </span>
+        <span className="text-sm font-medium text-gray-500 dark:text-gray-400">{authorName}</span>
         <span className="bg-primary-300 dark:bg-primary-600 h-px w-12" />
       </div>
     </div>

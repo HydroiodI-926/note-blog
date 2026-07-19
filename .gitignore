@@ -45,3 +45,16 @@ yarn-error.log*
 
 # Contentlayer
 .contentlayer
+
+# tsconfig
+tsconfig.tsbuildinfo
+
+# obsidian
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/graph.json
+.obsidian/plugins/*/data.json
+
+# music
+public/music/
+*.mp3

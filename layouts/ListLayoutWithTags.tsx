@@ -129,7 +129,7 @@ export default function ListLayoutWithTags({
                 const { path, date, title, summary, tags } = post
                 return (
                   <li key={path} className="py-5">
-                    <article className="flex flex-col space-y-2 rounded-xl p-4 transition-all duration-300 hover:bg-white/30 dark:hover:bg-white/5 xl:space-y-0">
+                    <article className="flex flex-col space-y-2 rounded-xl p-4 transition-all duration-300 hover:bg-white/30 xl:space-y-0 dark:hover:bg-white/5">
                       <dl>
                         <dt className="sr-only">发布于</dt>
                         <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">

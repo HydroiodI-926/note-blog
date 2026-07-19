@@ -58,6 +58,19 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  :root {
+    --toc-top: 5rem;
+  }
+
+  /* Headings need scroll margin for smooth scroll offset from sticky header */
+  .prose :where(h1, h2, h3, h4):not(:where([class~='not-prose'] *)) {
+    scroll-margin-top: var(--toc-top);
+  }
+
   *,
   ::after,
   ::before,
@@ -147,6 +160,16 @@
   scrollbar-width: none; /* Firefox */
 }
 
+/* ���ع������������������� */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
@@ -175,7 +198,7 @@ input:-webkit-autofill:focus {
   vertical-align: middle;
 }
 
-/* ========== 毛玻璃（Glassmorphism）样式 ========== */
+/* ========== ë������Glassmorphism����ʽ ========== */
 
 .glass-card {
   background: rgba(255, 255, 255, 0.4);
@@ -191,7 +214,7 @@ input:-webkit-autofill:focus {
   border-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
-/* 毛玻璃强模糊版（更高模糊度，文本更清晰） */
+/* ë����ǿģ���棨����ģ���ȣ��ı��������� */
 .glass-card-strong {
   background: rgba(255, 255, 255, 0.55);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -206,7 +229,6 @@ input:-webkit-autofill:focus {
   border-color: rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
-
 
 .glass-button {
   background: rgba(255, 255, 255, 0.3);
@@ -232,7 +254,7 @@ input:-webkit-autofill:focus {
   background: rgba(71, 85, 105, 0.6);
 }
 
-/* ========== 自定义滚动条 ========== */
+/* ========== �Զ�������� ========== */
 
 ::-webkit-scrollbar {
   width: 6px;
@@ -255,4 +277,144 @@ input:-webkit-autofill:focus {
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
+}
+
+/* ��ѡͼƬ�������� */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 45s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* ========== ����ģ����ʽ ========== */
+
+/* ������ת��������ƬЧ���� */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* ���泪Ƭ�� */
+.music-cover-ring {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(236, 72, 153, 0.3));
+  padding: 4px;
+}
+
+.dark .music-cover-ring {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(236, 72, 153, 0.4));
+}
+
+/* �����б����������� */
+@keyframes music-bar {
+  0%,
+  100% {
+    height: 4px;
+  }
+  50% {
+    height: 14px;
+  }
+}
+
+.music-bar {
+  animation: music-bar 0.8s ease-in-out infinite;
+}
+
+/* ��ʹ������� */
+.lyrics-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.2) transparent;
+}
+
+.lyrics-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.lyrics-container::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.2);
+  border-radius: 10px;
+}
+
+/* ����������ʽ */
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-primary-500);
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-primary-500);
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ��ʸ����� */
+.lyric-active {
+  text-shadow: 0 0 8px rgba(99, 102, 241, 0.3);
+}
+
+/* ========== ҳ����ɶ��� ========== */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes page-leave {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.animate-page-enter {
+  animation: page-enter 0.3s ease-out both;
+}
+
+.animate-page-leave {
+  animation: page-leave 0.2s ease-in both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-page-enter,
+  .animate-page-leave {
+    animation: none;
+  }
 }

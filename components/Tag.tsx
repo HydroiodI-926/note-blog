@@ -1,4 +1,4 @@
-﻿"use client"
+﻿'use client'
 
 import { slug } from 'github-slugger'
 import { useRouter } from 'next/navigation'
@@ -19,7 +19,7 @@ const Tag = ({ text }: Props) => {
   return (
     <span
       onClick={handleClick}
-      className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase cursor-pointer"
+      className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 cursor-pointer text-sm font-medium uppercase"
       role="link"
       tabIndex={0}
       onKeyDown={(e) => {

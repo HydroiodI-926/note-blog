@@ -1,22 +1,37 @@
-import siteMetadata from '@/data/siteMetadata'
+﻿import siteMetadata from '@/data/siteMetadata'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
 import ProfileCard from '@/components/home/ProfileCard'
+import MusicWidget from '@/components/home/MusicWidget'
 import SignatureQuote from '@/components/home/SignatureQuote'
 import FeaturedImages from '@/components/home/FeaturedImages'
+import LatestArticle from '@/components/home/LatestArticle'
 import LatestPosts from '@/components/home/LatestPosts'
 
 export default function Home({ posts }: { posts: any[] }) {
   return (
     <div className="space-y-6 py-6 md:py-10">
-      {/* 第一行：你者资施 + 简名 */}
+      {/* 第一行：个人资料 + 音乐小组件 */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <ProfileCard />
-        <SignatureQuote />
+        <MusicWidget />
       </div>
-      {/* 第一补级艺此务 */}
-      <FeaturedImages />
-      {/* 第一行数报：最新文章 */}
+
+      {/* 第二行：签名语（独占全宽） */}
+      <SignatureQuote />
+
+      {/* 第三行：精选图片 + 最新文章 */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-8">
+        <div className="lg:col-span-3">
+          <FeaturedImages />
+        </div>
+        <div className="lg:col-span-5">
+          <LatestArticle posts={posts} />
+        </div>
+      </div>
+
+      {/* 最新文章列表 */}
       <LatestPosts posts={posts} />
+
       {siteMetadata.newsletter?.provider && (
         <div className="flex items-center justify-center pt-4">
           <NewsletterForm />

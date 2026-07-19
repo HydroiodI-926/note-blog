@@ -1,4 +1,4 @@
-const { withContentlayer } = require('next-contentlayer2')
+﻿const { withContentlayer } = require('next-contentlayer2')
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -10,7 +10,7 @@ const ContentSecurityPolicy = `
   script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app analytics.umami.is;
   style-src 'self' 'unsafe-inline';
   img-src * blob: data:;
-  media-src *.s3.amazonaws.com;
+  media-src 'self' *.s3.amazonaws.com;
   connect-src *;
   font-src 'self';
   frame-src giscus.app
