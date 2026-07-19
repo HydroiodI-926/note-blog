@@ -58,7 +58,7 @@ export default function LatestPosts({ posts }: { posts: { slug: string; date: st
                           {summary}
                         </p>
                       )}
-                      {tags.length > 0 && (
+                      {tags && tags.length > 0 && (
                         <div className="mt-2 flex flex-wrap gap-1.5">
                           {tags.map((tag: string) => (
                             <Tag key={tag} text={tag} />
@@ -76,4 +76,5 @@ export default function LatestPosts({ posts }: { posts: { slug: string; date: st
     </div>
   )
 }
+
 
