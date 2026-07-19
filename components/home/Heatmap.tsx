@@ -74,7 +74,7 @@ export default function Heatmap() {
 
   const monthsData = useMemo(() => {
     const today = new Date()
-    const result = []
+    const result: { year: number; month: number; weeks: (Date | null)[][] }[] = []
 
     for (let i = 11; i >= 0; i--) {
       const date = new Date(today.getFullYear(), today.getMonth() - i, 1)
