@@ -182,6 +182,7 @@
   },
   "active": "5c523f292c3b0b6f",
   "lastOpenFiles": [
+    "fix-eslint.mjs",
     "data/signature.md",
     "data/authors/default.md",
     "data/blog/others/test.md",

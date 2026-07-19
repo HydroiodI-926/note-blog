@@ -53,6 +53,9 @@ export default function MusicWidget() {
   return (
     <div
       onClick={handleCardClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") handleCardClick() }}
       className="glass-card-strong group relative flex cursor-pointer flex-col items-center overflow-hidden p-6 text-center transition-all duration-300 hover:shadow-lg md:p-8"
     >
       {/* 标题 */}
@@ -99,7 +102,10 @@ export default function MusicWidget() {
       </div>
 
       {/* 控制按钮 */}
-      <div className="relative mt-3 flex items-center justify-center gap-3" onClick={stopNav}>
+      <div className="relative mt-3 flex items-center justify-center gap-3"
+        role="presentation"
+        onKeyDown={(e) => e.stopPropagation()}
+        onClick={stopNav}>
         <button
           onClick={playPrev}
           className="hover:text-primary-500 rounded-full p-1.5 text-gray-500 transition-all hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
@@ -152,6 +158,8 @@ export default function MusicWidget() {
 
       {/* 播放列表浮层 */}
       <div
+        role="presentation"
+        onKeyDown={(e) => e.stopPropagation()}
         onClick={stopNav}
         className={`absolute inset-x-0 bottom-0 z-10 max-h-[70%] overflow-y-auto rounded-b-2xl bg-white/95 shadow-lg backdrop-blur-md transition-transform duration-300 ease-out dark:bg-gray-900/95 ${
           showPlaylist ? 'translate-y-0' : 'translate-y-full'

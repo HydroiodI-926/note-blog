@@ -55,6 +55,8 @@ export default function ImagePreview({
   return (
     <div
       className="fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-black/80 backdrop-blur-sm"
+      role="presentation"
+      onKeyDown={(e) => { if (e.key === "Escape") onClose() }}
       onClick={onClose}
     >
       {/* 关闭按钮 */}
@@ -87,7 +89,10 @@ export default function ImagePreview({
       </button>
 
       {/* 图片 */}
-      <div className="relative flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+      <div className="relative flex flex-col items-center"
+        role="presentation"
+        onKeyDown={(e) => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}>
         <img
           src={currentImage.src}
           alt={currentImage.alt}
@@ -115,3 +120,4 @@ export default function ImagePreview({
     </div>
   )
 }
+

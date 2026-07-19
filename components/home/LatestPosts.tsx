@@ -5,7 +5,7 @@ import { formatDate } from 'pliny/utils/formatDate'
 
 const MAX_DISPLAY = 5
 
-export default function LatestPosts({ posts }: { posts: any[] }) {
+export default function LatestPosts({ posts }: { posts: { slug: string; date: string; title: string; summary?: string; tags?: string[] }[] }) {
   return (
     <div className="glass-card-strong p-6 md:p-8">
       <div className="mb-6 flex items-center justify-between">
@@ -76,3 +76,4 @@ export default function LatestPosts({ posts }: { posts: any[] }) {
     </div>
   )
 }
+

@@ -7,7 +7,7 @@ import FeaturedImages from '@/components/home/FeaturedImages'
 import LatestArticle from '@/components/home/LatestArticle'
 import LatestPosts from '@/components/home/LatestPosts'
 
-export default function Home({ posts }: { posts: any[] }) {
+export default function Home({ posts }: { posts: { slug: string; date: string; title: string; summary?: string; tags?: string[] }[] }) {
   return (
     <div className="space-y-6 py-6 md:py-10">
       {/* 第一行：个人资料 + 音乐小组件 */}
@@ -40,3 +40,4 @@ export default function Home({ posts }: { posts: any[] }) {
     </div>
   )
 }
+

@@ -115,6 +115,9 @@ export default function MusicPlayer() {
             <div
               ref={progressRef}
               className="group relative h-2 cursor-pointer overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700"
+              role="slider"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === "ArrowRight" || e.key === "ArrowLeft") handleProgressClick(e) }}
               onClick={handleProgressClick}
             >
               <div
