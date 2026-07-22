@@ -2,6 +2,8 @@
 import fs from 'fs'
 import path from 'path'
 
+export const dynamic = 'force-static'
+
 /** 支持的音频格式 */
 const AUDIO_EXTS = new Set(['.mp3', '.wav', '.flac', '.ogg', '.m4a', '.aac'])
 

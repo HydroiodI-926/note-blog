@@ -2,6 +2,8 @@
 import fs from 'fs'
 import path from 'path'
 
+export const dynamic = 'force-static'
+
 export async function GET() {
   const imagesDir = path.join(process.cwd(), 'public/static/images/featured')
 
