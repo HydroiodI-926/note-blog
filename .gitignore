@@ -56,7 +56,7 @@ tsconfig.tsbuildinfo
 .obsidian/plugins/*/data.json
 
 # music
-public/music/
+# public/music/
 *.mp3
 
 # notes sync (build-time generated)
