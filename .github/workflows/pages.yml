@@ -59,6 +59,7 @@ jobs:
         run: |
           mkdir -p _site
           mv out _site/note-blog
+          touch _site/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
         with:
