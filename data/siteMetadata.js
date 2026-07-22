@@ -8,8 +8,8 @@ const siteMetadata = {
   theme: 'system',
   siteUrl: 'https://hydroiodi-926.github.io/note-blog',
   siteRepo: '',
-  siteLogo: `/static/images/logo.png`,
-  socialBanner: `/static/images/twitter-card.png`,
+  siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
+  socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
   email: '',
   github: '',
   locale: 'zh-CN',
@@ -35,11 +35,11 @@ const siteMetadata = {
     },
   },
   // 背景图片配置
-  bgImages: [`/static/images/ocean.jpeg`],
+  bgImages: [`${process.env.BASE_PATH || ''}/static/images/ocean.jpeg`],
   bgBlur: 20,
 
   // 首页个人资料卡配置
-  avatarUrl: `/static/images/avatar.png`,
+  avatarUrl: `${process.env.BASE_PATH || ''}/static/images/avatar.png`,
   signature: '代码是诗，逻辑是歌，用心写出每一行。',
   social: {
     github: 'https://github.com/HydroiodI-926',
@@ -47,12 +47,12 @@ const siteMetadata = {
   },
 
   // 精选图片配置
-  featuredImages: [{ src: `/static/images/ocean.jpeg`, alt: '海洋' }],
+  featuredImages: [{ src: `${process.env.BASE_PATH || ''}/static/images/ocean.jpeg`, alt: '海洋' }],
 
   search: {
     provider: 'kbar',
     kbarConfig: {
-      searchDocumentsPath: `/search.json`,
+      searchDocumentsPath: `${process.env.BASE_PATH || ''}/search.json`,
     },
   },
 }

@@ -1,6 +1,7 @@
 ﻿import { allAuthors } from 'contentlayer/generated'
 import SocialIcon from '@/components/social-icons'
 import Link from '@/components/Link'
+import Image from '@/components/Image'
 
 export default function ProfileCard() {
   const author = allAuthors.find((p) => p.slug === 'default')
@@ -16,9 +17,11 @@ export default function ProfileCard() {
       <div className="mb-4">
         <Link href="/about">
           <div className="from-primary-400 h-24 w-24 cursor-pointer rounded-full bg-gradient-to-tr via-indigo-400 to-purple-400 p-[3px] shadow-lg transition-all duration-500 hover:scale-110 hover:rotate-6 hover:shadow-xl md:h-32 md:w-32">
-            <img
+            <Image
               src={avatar}
               alt={name}
+              width={128}
+              height={128}
               className="bw-white h-full w-full rounded-full object-cover dark:bg-gray-800"
             />
           </div>

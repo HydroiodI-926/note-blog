@@ -58,6 +58,7 @@ tsconfig.tsbuildinfo
 # music
 # public/music/
 *.mp3
+!public/music/*.mp3
 
 # notes sync (build-time generated)
 data/blog/notes-synced/

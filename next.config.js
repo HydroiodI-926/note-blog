@@ -55,7 +55,7 @@ const securityHeaders = [
 ]
 
 const output = process.env.EXPORT ? 'export' : undefined
-const basePath = '/note-blog'
+const basePath = process.env.BASE_PATH || undefined
 const unoptimized = process.env.UNOPTIMIZED ? true : undefined
 
 /**
