@@ -18,7 +18,7 @@ export default function ProfileCard() {
         <Link href="/about">
           <div className="from-primary-400 h-24 w-24 cursor-pointer rounded-full bg-gradient-to-tr via-indigo-400 to-purple-400 p-[3px] shadow-lg transition-all duration-500 hover:scale-110 hover:rotate-6 hover:shadow-xl md:h-32 md:w-32">
             <Image
-              src={avatar}
+              src={avatar || ''}
               alt={name}
               width={128}
               height={128}
