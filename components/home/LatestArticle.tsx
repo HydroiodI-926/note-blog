@@ -5,7 +5,11 @@ import Link from '@/components/Link'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 
-export default function LatestArticle({ posts }: { posts: { slug: string; date: string; title: string; summary?: string; tags?: string[] }[] }) {
+export default function LatestArticle({
+  posts,
+}: {
+  posts: { slug: string; date: string; title: string; summary?: string; tags?: string[] }[]
+}) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const [progress, setProgress] = useState(0)
@@ -152,4 +156,3 @@ export default function LatestArticle({ posts }: { posts: { slug: string; date: 
     </div>
   )
 }
-

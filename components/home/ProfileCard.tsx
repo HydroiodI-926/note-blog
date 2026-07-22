@@ -4,12 +4,12 @@ import Link from '@/components/Link'
 
 export default function ProfileCard() {
   const author = allAuthors.find((p) => p.slug === 'default')
-
+  
   if (!author) {
     return null
   }
 
-  const { name, avatar, occupation, summary, github, email } = author
+  const { name, avatar, occupation, summary, github, bilibili } = author
 
   return (
     <div className="glass-card-strong flex flex-col items-center p-6 text-center md:p-8">
@@ -28,7 +28,9 @@ export default function ProfileCard() {
         {name}
       </h1>
       {occupation && (
-        <p className="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">{occupation}</p>
+        <p className="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+          {occupation}
+        </p>
       )}
       <p className="mb-6 max-w-md text-sm leading-relaxed font-medium text-gray-600 md:text-base dark:text-gray-300">
         {summary}
@@ -39,9 +41,9 @@ export default function ProfileCard() {
             <SocialIcon kind="github" href={github} size={5} />
           </span>
         )}
-        {email && (
+        {bilibili && (
           <span className="glass-button p-2.5 text-gray-700 transition-all duration-300 hover:-translate-y-1 hover:scale-125 dark:text-gray-300">
-            <SocialIcon kind="mail" href={'mailto:' + email} size={5} />
+            <SocialIcon kind="bilibili" href={bilibili} size={5} />
           </span>
         )}
       </div>

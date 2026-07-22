@@ -13,12 +13,15 @@ export default function BackgroundRenderer() {
   if (!currentBg) return null
 
   return (
-    <div className="fixed inset-0 -z-10 h-lvh">
+    <div
+      className="fixed inset-0 -z-10 h-lvh will-change-transform"
+      style={{ contain: 'layout style paint' }}
+    >
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
         style={{ backgroundImage: `url(${currentBg})` }}
       />
-      <div className="absolute inset-0 bg-transparent transition-colors duration-500 dark:bg-black/60" />
+      <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-500 dark:opacity-100" />
       {bgBlur > 0 && (
         <div
           className="absolute inset-0"

@@ -204,6 +204,9 @@ input:-webkit-autofill:focus {
   background: rgba(255, 255, 255, 0.4);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
+  contain: paint;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
@@ -219,6 +222,7 @@ input:-webkit-autofill:focus {
   background: rgba(255, 255, 255, 0.55);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   backdrop-filter: blur(20px) saturate(180%);
+  contain: paint;
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   border-radius: 16px;
@@ -234,6 +238,7 @@ input:-webkit-autofill:focus {
   background: rgba(255, 255, 255, 0.3);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
+  contain: paint;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
   transition: all 0.3s ease;
@@ -393,28 +398,12 @@ input:-webkit-autofill:focus {
   }
 }
 
-@keyframes page-leave {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-}
-
 .animate-page-enter {
-  animation: page-enter 0.3s ease-out both;
-}
-
-.animate-page-leave {
-  animation: page-leave 0.2s ease-in both;
+  animation: page-enter 0.15s ease-out both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-page-enter,
-  .animate-page-leave {
+  .animate-page-enter {
     animation: none;
   }
 }

@@ -54,14 +54,25 @@ export default function ImagePreview({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-black/80 backdrop-blur-sm"
-      role="presentation"
-      onKeyDown={(e) => { if (e.key === "Escape") onClose() }}
+      className="fixed z-[9999] bg-black/80 backdrop-blur-sm"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
       onClick={onClose}
     >
       {/* 关闭按钮 */}
       <button
-        onClick={onClose}
+        onClick={(e) => {
+          e.stopPropagation()
+          onClose()
+        }}
         className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-lg transition-colors hover:bg-white"
         aria-label="关闭预览"
       >
@@ -89,14 +100,11 @@ export default function ImagePreview({
       </button>
 
       {/* 图片 */}
-      <div className="relative flex flex-col items-center"
-        role="presentation"
-        onKeyDown={(e) => e.stopPropagation()}
-        onClick={(e) => e.stopPropagation()}>
+      <div className="relative flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
         <img
           src={currentImage.src}
           alt={currentImage.alt}
-          className="max-h-[80vh] max-w-[85vw] rounded-lg object-contain shadow-2xl"
+          className="max-h-[85vh] max-w-[90vw] rounded-lg object-contain shadow-2xl"
         />
         {currentImage.alt && (
           <div className="mt-4 text-center text-sm text-white/80">{currentImage.alt}</div>
@@ -120,4 +128,3 @@ export default function ImagePreview({
     </div>
   )
 }
-

@@ -1,4 +1,4 @@
-import {
+﻿import {
   Mail,
   Github,
   Facebook,
@@ -11,6 +11,7 @@ import {
   Instagram,
   Medium,
   Bluesky,
+  Bilibili,
 } from './icons'
 
 const components = {
@@ -26,6 +27,7 @@ const components = {
   instagram: Instagram,
   medium: Medium,
   bluesky: Bluesky,
+  bilibili: Bilibili,
 }
 
 type SocialIconProps = {
@@ -59,3 +61,4 @@ const SocialIcon = ({ kind, href, size = 8 }: SocialIconProps) => {
 }
 
 export default SocialIcon
+

@@ -55,7 +55,9 @@ export default function MusicWidget() {
       onClick={handleCardClick}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") handleCardClick() }}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') handleCardClick()
+      }}
       className="glass-card-strong group relative flex cursor-pointer flex-col items-center overflow-hidden p-6 text-center transition-all duration-300 hover:shadow-lg md:p-8"
     >
       {/* 标题 */}
@@ -102,10 +104,12 @@ export default function MusicWidget() {
       </div>
 
       {/* 控制按钮 */}
-      <div className="relative mt-3 flex items-center justify-center gap-3"
+      <div
+        className="relative mt-3 flex items-center justify-center gap-3"
         role="presentation"
         onKeyDown={(e) => e.stopPropagation()}
-        onClick={stopNav}>
+        onClick={stopNav}
+      >
         <button
           onClick={playPrev}
           className="hover:text-primary-500 rounded-full p-1.5 text-gray-500 transition-all hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"

@@ -127,7 +127,7 @@ export default function Heatmap() {
       </div>
 
       {/* 导航按钮和月份指示器 */}
-      <div className="mb-2 flex items-center justify-between">
+      <div className="mb-2 flex items-center justify-between -ml-3">
         <button
           onClick={handlePrev}
           disabled={currentMonth === 0}

@@ -109,7 +109,9 @@ export default function GalleryPage() {
                   className="group relative h-64 w-72 flex-shrink-0 cursor-pointer overflow-hidden rounded-xl"
                   role="button"
                   tabIndex={0}
-                  onKeyDown={(e) => { if (e.key === 'Enter') setPreviewIndex(i % displayImages.length) }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') setPreviewIndex(i % displayImages.length)
+                  }}
                   onClick={() => setPreviewIndex(i % displayImages.length)}
                 >
                   <img
@@ -143,7 +145,12 @@ export default function GalleryPage() {
                 className="group relative aspect-square cursor-pointer overflow-hidden rounded-xl"
                 role="button"
                 tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter') { setSelectedCategory(category.name); setPreviewIndex(i) } }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    setSelectedCategory(category.name)
+                    setPreviewIndex(i)
+                  }
+                }}
                 onClick={() => {
                   setSelectedCategory(category.name)
                   setPreviewIndex(i)
@@ -185,4 +192,3 @@ export default function GalleryPage() {
     </div>
   )
 }
-
