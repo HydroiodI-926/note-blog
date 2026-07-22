@@ -62,27 +62,33 @@ function Modal({
         </h3>
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400">时间</label>
+            <label className="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400">
+              时间
+            </label>
             <input
               type="time"
               value={formData.time}
               onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400">内容</label>
+            <label className="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400">
+              内容
+            </label>
             <input
               type="text"
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               placeholder="输入计划内容"
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white"
               autoFocus
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400">分类</label>
+            <label className="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400">
+              分类
+            </label>
             <div className="flex gap-2">
               {(['work', 'study', 'life'] as const).map((cat) => (
                 <button
@@ -112,7 +118,7 @@ function Modal({
           <button
             type="button"
             onClick={onSave}
-            className="flex-1 rounded-lg bg-primary-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-600"
+            className="bg-primary-500 hover:bg-primary-600 flex-1 rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
           >
             保存
           </button>
@@ -151,7 +157,9 @@ export default function Schedule() {
   }, [schedule])
 
   const toggleComplete = (id: string) => {
-    setSchedule((prev) => prev.map((item) => (item.id === id ? { ...item, completed: !item.completed } : item)))
+    setSchedule((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, completed: !item.completed } : item))
+    )
   }
 
   const openAddModal = () => {
@@ -169,7 +177,9 @@ export default function Schedule() {
   const handleSave = () => {
     if (!formData.time || !formData.title) return
     if (editingId) {
-      setSchedule((prev) => prev.map((item) => (item.id === editingId ? { ...item, ...formData } : item)))
+      setSchedule((prev) =>
+        prev.map((item) => (item.id === editingId ? { ...item, ...formData } : item))
+      )
     } else {
       setSchedule((prev) => [...prev, { ...formData, id: generateId(), completed: false }])
     }
@@ -194,8 +204,10 @@ export default function Schedule() {
       </div>
       <div className="mb-4 h-1.5 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
         <div
-          className="h-full rounded-full bg-primary-500 transition-all duration-500"
-          style={{ width: schedule.length > 0 ? `${(completedCount / schedule.length) * 100}%` : '0%' }}
+          className="bg-primary-500 h-full rounded-full transition-all duration-500"
+          style={{
+            width: schedule.length > 0 ? `${(completedCount / schedule.length) * 100}%` : '0%',
+          }}
         />
       </div>
       <div className="max-h-48 space-y-2 overflow-y-auto">
@@ -211,12 +223,24 @@ export default function Schedule() {
                 type="button"
                 onClick={() => toggleComplete(item.id)}
                 className={`flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
-                  item.completed ? 'border-primary-500 bg-primary-500' : 'border-gray-300 dark:border-gray-600'
+                  item.completed
+                    ? 'border-primary-500 bg-primary-500'
+                    : 'border-gray-300 dark:border-gray-600'
                 }`}
               >
                 {item.completed && (
-                  <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  <svg
+                    className="h-3 w-3 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={3}
+                      d="M5 13l4 4L19 7"
+                    />
                   </svg>
                 )}
               </button>
@@ -235,7 +259,11 @@ export default function Schedule() {
                 {categoryLabels[item.category]}
               </span>
               <span className="flex-shrink-0 text-xs text-gray-500">{item.time}</span>
-              <button type="button" onClick={() => openEditModal(item)} className="text-gray-400 hover:text-blue-500">
+              <button
+                type="button"
+                onClick={() => openEditModal(item)}
+                className="text-gray-400 hover:text-blue-500"
+              >
                 <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path
                     strokeLinecap="round"
@@ -245,7 +273,11 @@ export default function Schedule() {
                   />
                 </svg>
               </button>
-              <button type="button" onClick={() => deleteItem(item.id)} className="text-gray-400 hover:text-red-500">
+              <button
+                type="button"
+                onClick={() => deleteItem(item.id)}
+                className="text-gray-400 hover:text-red-500"
+              >
                 <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path
                     strokeLinecap="round"
@@ -262,7 +294,7 @@ export default function Schedule() {
       <button
         type="button"
         onClick={openAddModal}
-        className="mt-3 flex w-full items-center justify-center gap-1 rounded-lg border border-dashed border-gray-300 p-2 text-xs text-gray-500 transition-colors hover:border-primary-500 hover:text-primary-500 dark:border-gray-600"
+        className="hover:border-primary-500 hover:text-primary-500 mt-3 flex w-full items-center justify-center gap-1 rounded-lg border border-dashed border-gray-300 p-2 text-xs text-gray-500 transition-colors dark:border-gray-600"
       >
         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />

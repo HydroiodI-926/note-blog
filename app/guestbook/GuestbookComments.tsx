@@ -9,11 +9,8 @@ export default function GuestbookComments() {
 
   if (!siteMetadata.comments?.provider) {
     return (
-      <div className="text-center text-gray-500 dark:text-gray-400 py-12">
-        <p className="text-lg">评论系统尚未配置</p>
-        <p className="text-sm mt-2">
-          请在 <code>data/siteMetadata.js</code> 中配置 Giscus，或设置对应的环境变量。
-        </p>
+      <div className="py-12 text-center text-gray-500 dark:text-gray-400">
+        <p className="mt-2 text-sm">评论系统尚未配置，请在 siteMetadata.js 中配置 Giscus。</p>
       </div>
     )
   }
@@ -23,10 +20,10 @@ export default function GuestbookComments() {
       {loadComments ? (
         <Comments commentsConfig={siteMetadata.comments} slug="guestbook" />
       ) : (
-        <div className="text-center py-8">
+        <div className="py-8 text-center">
           <button
             onClick={() => setLoadComments(true)}
-            className="inline-flex items-center rounded-md bg-primary-500 px-6 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-primary-600 dark:hover:bg-primary-400"
+            className="bg-primary-500 hover:bg-primary-600 dark:hover:bg-primary-400 inline-flex items-center rounded-md px-6 py-3 text-sm font-medium text-white shadow-sm transition-colors"
           >
             加载留言板
           </button>

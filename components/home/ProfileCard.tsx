@@ -4,7 +4,7 @@ import Link from '@/components/Link'
 
 export default function ProfileCard() {
   const author = allAuthors.find((p) => p.slug === 'default')
-  
+
   if (!author) {
     return null
   }
@@ -28,9 +28,7 @@ export default function ProfileCard() {
         {name}
       </h1>
       {occupation && (
-        <p className="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">
-          {occupation}
-        </p>
+        <p className="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">{occupation}</p>
       )}
       <p className="mb-6 max-w-md text-sm leading-relaxed font-medium text-gray-600 md:text-base dark:text-gray-300">
         {summary}
